@@ -10,7 +10,7 @@
 			acf_label_tooltips($(this));
 		});
 
-		$('*').not('.clones').find('.table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
+		$('*').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
 			acf_repeater_tooltips($(this));
 		});
 
@@ -74,17 +74,21 @@
 		});
 	}
 
-	function acf_repeater_tooltips(repeaterfield) {	
-		tooltiptext = repeaterfield.find('p.description').html();
+	function acf_repeater_tooltips(repeaterfield) {
+		desciption = repeaterfield.find('p.description');
+		tooltiptext = desciption.html();
 		if( !$.trim(tooltiptext) == '') {
-			repeaterfield.append('<span class="dashicons dashicons-editor-help repeater tooltip"></span>');
+			if ( !desciption.hasClass('has_tooltip') ) {
+				repeaterfield.append('<span class="dashicons dashicons-editor-help repeater tooltip"></span>');
+				desciption.addClass('has_tooltip');
+			}
 		}
 	};
 
 	function acf_label_tooltips(labelfield) {
 		tooltiptext = labelfield.find('p').html();
 		label = labelfield.find('label');
-		if( !$.trim(tooltiptext) =='') {
+		if( !$.trim(tooltiptext) == '') {
 			if ( !label.hasClass('has_tooltip') ) {
 				label.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
 				label.addClass('has_tooltip');
