@@ -18,7 +18,7 @@ This add-on can be treated as both a WP plugin and a theme include.
 **Include within theme**
 
 1.	Copy the 'acf-tootip' folder into your theme folder (can use sub folders). You can place the folder anywhere inside the 'wp-content' directory
-2.	Edit your functions.php file and add the code below (Make sure the path is correct to include the acf-date_time_picker.php file)
+2.	Edit your functions.php file and add the code below (Make sure the path is correct to include the acf-tootip.php file)
 
 ```php
 include_once('acf-tooltip/acf-tooltip.php');
