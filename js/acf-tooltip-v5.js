@@ -6,10 +6,11 @@
 	acf.add_action('ready append', function( $el ) {
 		$('.clones .table-layout').addClass('is_clone');
 
-		$('.acf-label').each(function() {
+		$('div:not(#acf-field-group-locations):not(#acf-field-group-options).acf-postbox .acf-label').each(function() {
 			acf_label_tooltips($(this));
 		});
-		$('*').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
+
+		$('div:not(#acf-field-group-locations):not(#acf-field-group-options).acf-postbox').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
 			acf_repeater_tooltips($(this));
 		});
 
@@ -51,7 +52,12 @@
 
 
 	function acf_tooltip() {
-		$('.tooltip').each(function() {			
+		$('.tooltip').each(function() {
+			if ( $(this).hasClass('repeater') ) {
+				tooltiptext = $(this).parent().find('.description').html()
+			} else {
+				tooltiptext = $(this).parent().next('.description').html()
+			}
 			$(this).qtip({
 				style: {
 					classes: 'qtip-acf',
@@ -60,6 +66,9 @@
 				position: {
 					my: 'center left',  // Position my top left...
 					at: 'right center', // at the bottom right of...
+				},
+				content: {
+					text: tooltiptext
 				}
 			});
 		});
@@ -70,7 +79,7 @@
 		tooltiptext = desciption.html();
 		if( !$.trim(tooltiptext) == '') {
 			if ( !desciption.hasClass('has_tooltip') ) {
-				repeaterfield.append('<span class="dashicons dashicons-editor-help repeater tooltip" title="'+tooltiptext+'"></span>');
+				repeaterfield.append('<span class="dashicons dashicons-editor-help repeater tooltip"></span>');
 				desciption.addClass('has_tooltip');
 			}
 		}
@@ -78,13 +87,10 @@
 
 	function acf_label_tooltips(labelfield) {
 		tooltiptext = labelfield.find('p').html();
-		if ( !tooltiptext ) {
-			tooltiptext = labelfield.parent().parent().find('.description').html();
-		}
 		label = labelfield.find('label');
 		if( !$.trim(tooltiptext) == '') {
 			if ( !label.hasClass('has_tooltip') ) {
-				label.append('<span class="dashicons dashicons-editor-help tooltip" title="'+tooltiptext+'"></span>');
+				label.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
 				label.addClass('has_tooltip');
 			}
 		}

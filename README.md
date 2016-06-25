@@ -30,6 +30,9 @@ This ACF field type is only compatible with ACF 5
 
 
 ### Changelog
+**1.1.4**
+* Fix to work better with new ACF V 5.3.9.x
+
 **1.1.3**
 * Fix to work even if instructions are set below fields
 

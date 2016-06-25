@@ -1,4 +1,4 @@
-.acf-field p.description {
+body:not(.post-type-acf-field-group) .acf-field p.description {
 	display:none;
 }
 
