@@ -6,11 +6,11 @@
 	acf.add_action('ready append', function( $el ) {
 		$('.clones .table-layout').addClass('is_clone');
 
-		$('div:not(#acf-field-group-locations):not(#acf-field-group-options).acf-postbox .acf-label').each(function() {
+		$('.acf-postbox .acf-label, form.acf-form .acf-label').each(function() {
 			acf_label_tooltips($(this));
 		});
 
-		$('div:not(#acf-field-group-locations):not(#acf-field-group-options).acf-postbox').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
+		$('.acf-postbox').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
 			acf_repeater_tooltips($(this));
 		});
 
@@ -86,7 +86,7 @@
 	};
 
 	function acf_label_tooltips(labelfield) {
-		tooltiptext = labelfield.find('p').html();
+		tooltiptext = labelfield.find('p.description').html();
 		label = labelfield.find('label');
 		if( !$.trim(tooltiptext) == '') {
 			if ( !label.hasClass('has_tooltip') ) {
