@@ -10,6 +10,10 @@
 			acf_label_tooltips($(this));
 		});
 
+		$('.acf-postbox .acf-input, form.acf-form .acf-input').each(function() {
+			acf_input_tooltips($(this));
+		});
+
 		$('.acf-postbox').not('.clones').find('.acf-repeater.-table, .table-layout').not('.is_clone').find('thead > tr > .acf-th').each(function() {
 			acf_repeater_tooltips($(this));
 		});
@@ -56,7 +60,7 @@
 			if ( $(this).hasClass('repeater') ) {
 				tooltiptext = $(this).parent().find('.description').html()
 			} else {
-				tooltiptext = $(this).parent().next('.description').html()
+				tooltiptext = $(this).parent().parent().parent().find('.description').html()
 			}
 			$(this).qtip({
 				style: {
@@ -88,6 +92,17 @@
 	function acf_label_tooltips(labelfield) {
 		tooltiptext = labelfield.find('p.description').html();
 		label = labelfield.find('label');
+		if( !$.trim(tooltiptext) == '') {
+			if ( !label.hasClass('has_tooltip') ) {
+				label.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
+				label.addClass('has_tooltip');
+			}
+		}
+	};
+
+	function acf_input_tooltips(labelfield) {
+		tooltiptext = labelfield.find('p.description').html();
+		label = labelfield.parent().find('label');
 		if( !$.trim(tooltiptext) == '') {
 			if ( !label.hasClass('has_tooltip') ) {
 				label.append('<span class="dashicons dashicons-editor-help tooltip"></span>');
