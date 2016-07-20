@@ -31,6 +31,9 @@ This ACF field type is only compatible with ACF 5
 
 ### Changelog
 **1.1.6**
+* Fix to work correct on new posts/pages
+
+**1.1.6**
 * Another fix to work even if instructions are set below fields
 
 **1.1.5**

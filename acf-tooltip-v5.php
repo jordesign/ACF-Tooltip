@@ -1,9 +1,7 @@
 <?php
 global $pagenow;
 
-$enqueue = true;
-
-if ( isset($_GET['post']) && $pagenow == "post.php" ) {
+if ( isset($_GET['post']) && $pagenow == "post.php" || $pagenow == "post-new.php" ) {
 	$post_obj = get_post( $_GET['post'] );
 	if ( $post_obj->post_type != 'acf-field-group' ) {
 		add_action( 'acf/input/admin_enqueue_scripts', 'enqueue_acf_tooltip' );
